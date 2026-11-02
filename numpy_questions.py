@@ -16,10 +16,6 @@ This will be enforced with `ruff`. You can check that there are no errors
 by calling `ruff check` at the root of the repo.
 """
 import numpy as np
-import scipy
-import sklearn
-import pandas as pd
-
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
