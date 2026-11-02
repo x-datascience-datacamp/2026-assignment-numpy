@@ -41,8 +41,11 @@ def max_index(X):
     j = 0
 
     # TODO
-
-    return i, j
+    try:
+        i, j = np.unravel_index(np.argmax(X), X.shape)
+        return (i, j)
+    except (TypeError, ValueError, AttributeError) as exc:
+        raise ValueError("Invalid input") from exc
 
 
 def wallis_product(n_terms):
@@ -64,4 +67,10 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    # Empty product => I(0) = 2
+    # https://en.wikipedia.org/wiki/Wallis_product#Proof_using_integration
+    if n_terms == 0:
+        return 2
+    # otherwise
+    nums = np.array([4 * x ** 2 / (4 * x ** 2 - 1) for x in range(1, n_terms+1)])
+    return np.cumprod(nums)[-1] * 2
