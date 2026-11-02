@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `ruff`. You can check that there are no errors
 by calling `ruff check` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -40,9 +41,17 @@ def max_index(X):
     i = 0
     j = 0
 
-    # TODO
+    # Value Error verif checks
+    if not isinstance(X, np.ndarray):
+        raise ValueError("[Alert] Input must be a numpy array.")
+    if np.ndim(X) != 2:
+        raise ValueError("[Alert] Input array must be 2D.")
+    if X.size == 0:
+        raise ValueError("[Alert] Input array must not be empty.")
 
-    return i, j
+    flat_index = np.argmax(X)
+    i, j = np.unravel_index(flat_index, X.shape)
+    return int(i), int(j)
 
 
 def wallis_product(n_terms):
@@ -62,6 +71,11 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    if n_terms < 0:
+        raise ValueError("n_terms must be a non-negative integer.")
+    if n_terms == 0:
+        return 2.0
+    n = np.arange(1, n_terms + 1)
+    terms = (4 * n**2) / (4 * n**2 - 1)
+    pi = 2.0 * np.prod(terms)
+    return float(pi)
