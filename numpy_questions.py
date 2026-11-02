@@ -19,7 +19,8 @@ import numpy as np
 
 
 def max_index(X):
-    """Return the index of the maximum in a numpy array.
+    """
+    Return the index of the maximum in a numpy array.
 
     Parameters
     ----------
@@ -37,12 +38,14 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("X must be a numpy array")
+    if X.ndim != 2:
+        raise ValueError("X must be a 2D array")
 
-    # TODO
+    i, j = np.unravel_index(np.argmax(X), X.shape)
 
-    return i, j
+    return int(i), int(j)
 
 
 def wallis_product(n_terms):
@@ -64,4 +67,8 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    k = np.arange(1, n_terms + 1) ** 2
+
+    prod = float(2 * np.prod(4 * k / (4 * k - 1)))
+
+    return prod
