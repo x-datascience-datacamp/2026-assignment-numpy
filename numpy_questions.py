@@ -44,7 +44,7 @@ def max_index(X):
         raise ValueError("Input must be a numpy array")
     if X.ndim != 2:
         raise ValueError("Input must be 2-dimensional")
-    
+
     i, j = np.unravel_index(indices=np.argmax(X), shape=X.shape)
 
     return i, j
@@ -69,5 +69,6 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    
-    return 2 * np.prod([(2 * n / (2 * n - 1)) * (2 * n / (2 * n + 1)) for n in range(1, n_terms+1)])
+
+    return 2 * np.prod(
+        [(2 * n / (2 * n - 1)) * (2 * n / (2 * n + 1)) for n in range(1, n_terms+1)])
