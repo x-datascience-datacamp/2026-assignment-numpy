@@ -16,7 +16,7 @@ This will be enforced with `ruff`. You can check that there are no errors
 by calling `ruff check` at the root of the repo.
 """
 import numpy as np
-# First commit to the git 
+# First commit to the git
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
@@ -39,29 +39,21 @@ def max_index(X):
     """
     i = 0
     j = 0
-    # X =np.array(X)
     e_init = float('-inf')
-
-
     # TODO
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array.")
+
     if X.ndim != 2:
         raise ValueError("Input array must be 2D.")
+
     for k, ele in enumerate(X):
-        for l, e in enumerate(ele):
-            # print(l, e)
+        for col_idx , e in enumerate(ele):
             if e > e_init:
                 e_init = e
-                j = l
+                j = col_idx
                 i = k
-               
-            
-    return i, j
-
-i, j = max_index(np.array([[0, 1], [2, 0]]))
-print(i, j)  # Output: (1, 0)
-
+    return i , j
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
@@ -81,10 +73,9 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    prod =1 
+    prod = 1
     if n_terms == 0:
         return 2
-    for  i in range(1, n_terms+1): 
+    for  i in range(1, n_terms + 1):
         prod *= (4 * i**2)/(4*i**2-1)
-
     return 2*prod
