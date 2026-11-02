@@ -39,9 +39,18 @@ def max_index(X):
     """
     i = 0
     j = 0
-
+    max_val=-np.inf
     # TODO
-
+    try:
+        n,m=X.shape
+    except Exception as e:
+        raise ValueError(e)
+    for r in range(n):
+        for c in range(m):
+            if X[r][c]>max_val:
+                max_val=X[r][c]
+                i=r
+                j=c
     return i, j
 
 
@@ -63,5 +72,8 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    # terms in the product. For example 10000
+    result=1
+    for i in range(1,n_terms+1):
+        result*=4*i*i/(4*i*i-1)
+    return result*2
