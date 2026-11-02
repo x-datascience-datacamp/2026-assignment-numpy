@@ -51,7 +51,6 @@ def max_index(X):
                 max_val=X[r][c]
                 i=r
                 j=c
-                
     return i, j
 
 
