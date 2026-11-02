@@ -10,18 +10,18 @@
 
 ## How?
 
-  - Fork the repository by clicking on the `Fork` button on the upper right corner
-  - Clone the repository of your fork with: `git clone https://github.com/MYLOGIN/YEAR-assignment-numpy` (replace MYLOGIN with your GitHub login and YEAR with the year in the name of the repository you forked)
-  - Create a branch called `my_user_name` using `git checkout -b my_user_name`
-  - Make the changes to complete the assignment. You have to modify the files that contain `questions` in their name. Do not modify the files that start with `test_`.
-  - Check locally that your solution meet the test by running `pytest` from the root of the repo. You may need to install `pytest` using `pip` or `conda`.
-  - Check the code formatting of your solution with `ruff check`. You may need to install `ruff` using `pip` or `conda`.
-  - Open the pull request on GitHub:
-     - Create a commit with `git add -u` and `git commit -m "UP my solution"`
-     - Push your branch on your fork: `git push -u origin my_user_name`
-     - Go to your repo in your browser and click the `Open a PR` button.
-  - Keep pushing to your branch until the continuous integration system is green.
-  - When it is green, put the link to your PR in the course's spreadsheet.
+  - [X] Fork the repository by clicking on the `Fork` button on the upper right corner
+  - [X] Clone the repository of your fork with: `git clone https://github.com/MYLOGIN/YEAR-assignment-numpy` (replace MYLOGIN with your GitHub login and YEAR with the year in the name of the repository you forked)
+  - [X] Create a branch called `my_user_name` using `git checkout -b my_user_name`
+  - [X] Make the changes to complete the assignment. You have to modify the files that contain `questions` in their name. Do not modify the files that start with `test_`.
+  - [X] Check locally that your solution meet the test by running `pytest` from the root of the repo. You may need to install `pytest` using `pip` or `conda`.
+  - [X] Check the code formatting of your solution with `ruff check`. You may need to install `ruff` using `pip` or `conda`.
+  - [X] Open the pull request on GitHub:
+     [ ] Create a commit with `git add -u` and `git commit -m "UP my solution"`
+     [ ] Push your branch on your fork: `git push -u origin my_user_name`
+     [ ] Go to your repo in your browser and click the `Open a PR` button.
+  [ ] Keep pushing to your branch until the continuous integration system is green.
+  [ ] When it is green, put the link to your PR in the course's spreadsheet.
 
 ## Getting Help
 
