@@ -17,7 +17,6 @@ by calling `ruff check` at the root of the repo.
 """
 import numpy as np
 
-
 def max_index(X):
     """Return the index of the maximum in a numpy array.
 
@@ -42,8 +41,20 @@ def max_index(X):
 
     # TODO
 
-    return i, j
+    if not isinstance(X,np.ndarray):
+        raise ValueError("Input must be a numpy array.")
+    if not len(X.shape)==2:
+        raise ValueError("Input must be a numpy array.")
 
+    max=-np.inf
+    for i_ in range(X.shape[0]):
+        for j_ in range(X.shape[1]):
+            if X[i_,j_]>=max:
+                i,j=i_,j_
+                max=X[i_,j_]
+    print(i,j)
+
+    return i, j
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -64,4 +75,9 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    p=2
+    for n in range(n_terms):
+        p*=(4*(n+1)**2)/(4*(n+1)**2-1)
+    print(p)
+    return p
+
