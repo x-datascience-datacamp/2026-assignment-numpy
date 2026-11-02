@@ -41,8 +41,18 @@ def max_index(X):
     j = 0
 
     # TODO
-
-    return i, j
+    try :
+        n, m = X.shape
+        S=-np.inf
+        index=(0,0)
+        for i in range(n):
+            for j in range(m):
+                if X[i,j]>S:
+                    S=X[i,j]
+                    index=(i,j)
+    except Exception as e:
+        raise ValueError(e)
+    return index[0], index[1]
 
 
 def wallis_product(n_terms):
@@ -64,4 +74,8 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    prod=1
+    for n in range(1, n_terms+1) :
+        prod=prod*4*n**2/(4*n**2-1)
+    pi_approx = 2*prod
+    return pi_approx
