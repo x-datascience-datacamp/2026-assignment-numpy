@@ -39,8 +39,15 @@ def max_index(X):
     """
     i = 0
     j = 0
-
-    # TODO
+    if( (type(X) is not np.ndarray) or (X.ndim != 2) ) :
+        raise ValueError
+    max = X[i,j]
+    for i_iter in range(len(X)) : # parcours rows
+        for j_iter in range(len(X[i_iter])) : # parcours features
+            if X[i_iter,j_iter] > max :
+                max = X[i_iter,j_iter]
+                i = i_iter
+                j = j_iter
 
     return i, j
 
@@ -64,4 +71,8 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    pi = 1.0
+    for i in range(1, n_terms + 1) :
+        pi = pi * (((2 * i) / (2 * i - 1)) * ((2 * i) / (2 * i + 1)) )
+
+    return pi * 2
