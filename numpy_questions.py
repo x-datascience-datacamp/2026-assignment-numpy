@@ -42,6 +42,8 @@ def max_index(X):
     if X.size == 0:
         raise ValueError("X must not be empty")
 
+    # argmax finds the maximum's position in the flattened array; unravel_index
+    # converts that position back to its (row, column) coordinates.
     i, j = np.unravel_index(np.argmax(X), X.shape)
 
     return int(i), int(j)
@@ -70,6 +72,8 @@ def wallis_product(n_terms):
     if n_terms < 0:
         raise ValueError("n_terms must be non-negative")
 
+    # Wallis' formula is pi/2 = product((2k / (2k - 1)) * (2k / (2k + 1))).
+    # Start with the empty product (1), so n_terms=0 returns 2 * 1 = 2.
     product = 1.0
     for k in range(1, n_terms + 1):
         product *= (2 * k / (2 * k - 1)) * (2 * k / (2 * k + 1))
