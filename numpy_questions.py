@@ -1,3 +1,4 @@
+
 """Assignment - using numpy and making a PR.
 
 The goals of this assignment are:
@@ -39,10 +40,16 @@ def max_index(X):
     """
     i = 0
     j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input must be a 2D numpy array")
+    if X.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array")
+    for i in range(X.shape[0]):
+        for j in range(X.shape[1]):
+            if X[i, j] == np.max(X):
+                return i, j
 
-    # TODO
-
-    return i, j
+    raise ValueError("Input must be a 2D numpy array")
 
 
 def wallis_product(n_terms):
@@ -62,6 +69,12 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
+    if n_terms == 0:
+        return 2
+
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    pi_approximation = 1
+    for i in range(1, n_terms + 1):
+        pi_approximation *= (2 * i) ** 2 / ((2 * i - 1) * (2 * i + 1))
+    return pi_approximation * 2
