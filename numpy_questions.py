@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `ruff`. You can check that there are no errors
 by calling `ruff check` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -39,10 +40,12 @@ def max_index(X):
     """
     i = 0
     j = 0
-
     # TODO
-
-    return i, j
+    if isinstance(X, np.ndarray) and X.ndim == 2:
+        i, j = np.unravel_index(X.argmax(), X.shape)
+        return i, j
+    else:
+        raise ValueError("Either input is not numpy or 2 dimensional")
 
 
 def wallis_product(n_terms):
@@ -64,4 +67,8 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    product = 1
+    for i in range(1, n_terms + 1):
+        product *= 4 * i * i / ((4 * i * i) - 1)
+
+    return product * 2
