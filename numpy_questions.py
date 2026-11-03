@@ -2,7 +2,7 @@
 
 The goals of this assignment are:
     * Use numpy in practice with two easy exercises.
-    * Use automated tools to validate the code (`pytest` and `ruff`)
+    * Use automated tools to validate the code (`pytest` and `flake8`)
     * Submit a Pull-Request on github to practice `git`.
 
 The two functions below are skeleton functions. The docstrings explain what
@@ -12,8 +12,8 @@ wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
 the repo. It should say that 2 tests ran with success.
 
 We also ask to respect the pep8 convention: https://pep8.org.
-This will be enforced with `ruff`. You can check that there are no errors
-by calling `ruff check` at the root of the repo.
+This will be enforced with `flake8`. You can check that there is no flake8
+errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
@@ -37,13 +37,13 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
-
     # TODO
-
-    return i, j
-
+    if not isinstance(X, np.ndarray):
+        raise ValueError('The input is not a numpy array')
+    if X.ndim != 2:
+        raise ValueError('The shape is not 2D')
+    res = np.unravel_index(np.argmax(X), X.shape)
+    return int(res[0]), int(res[1])
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -64,4 +64,6 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    n = np.arange(1, n_terms + 1)
+    terms = (4 * n ** 2) / (4 * n ** 2 - 1)
+    return 2 * np.prod(terms)
