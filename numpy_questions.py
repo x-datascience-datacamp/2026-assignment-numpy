@@ -40,18 +40,18 @@ def max_index(X):
     i = 0
     j = 0
     max_value = -np.inf
-    
+
     # X is np.array?
     if not isinstance(X, np.ndarray):
         raise ValueError("X must be a NumPy array")
-    
+
     n_lines, n_cols = X.shape
     # Explore X
-    for k in range(n_lines):
-        for l in range(n_cols):
-            if X[k,l] > max_value:
-                max_value = X[k,l]
-                i,j = k,l
+    for line in range(n_lines):
+        for col in range(n_cols):
+            if X[line, col] > max_value:
+                max_value = X[line, col]
+                i, j = line, col
 
     return i, j
 
@@ -75,10 +75,9 @@ def wallis_product(n_terms):
     """
 
     W = 1
-    if n_terms==0:
+    if n_terms == 0:
         pass
     else:
-        for k in range(1,n_terms+1):
+        for k in range(1, n_terms+1):
             W *= (2*k)**2/((2*k-1)*(2*k+1))
-    
     return 2*W
