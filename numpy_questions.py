@@ -34,15 +34,18 @@ def max_index(X):
     Raises
     ------
     ValueError
-        If the input is not a numpy array or
-        if the shape is not 2D.
+        If the input is not a numpy array,
+        if the shape is not 2D, or if it is empty.
     """
-    i = 0
-    j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("X must be a numpy array.")
+    if X.ndim != 2:
+        raise ValueError(f"X must be 2D, got an array with {X.ndim} dims.")
+    if X.size == 0:
+        raise ValueError("X must not be empty.")
 
-    # TODO
-
-    return i, j
+    i, j = np.unravel_index(np.argmax(X), X.shape)
+    return int(i), int(j)
 
 
 def wallis_product(n_terms):
@@ -62,6 +65,8 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    # Each term is 4k^2 / (4k^2 - 1) and the product converges to pi / 2.
+    if n_terms == 0:
+        return 2.0
+    k_sq = 4.0 * np.arange(1, n_terms + 1) ** 2
+    return 2.0 * float(np.prod(k_sq / (k_sq - 1)))
