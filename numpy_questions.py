@@ -40,7 +40,6 @@ def max_index(X):
     i = 0
     j = 0
 
-    # TODO
     if not isinstance(X, np.ndarray):
         raise ValueError()
 
