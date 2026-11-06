@@ -1,25 +1,26 @@
-"""Assignment - using numpy and making a PR.
+"""Assignment - using NumPy and making a PR.
 
 The goals of this assignment are:
-    * Use numpy in practice with two easy exercises.
+    * Use NumPy in practice with two easy exercises.
     * Use automated tools to validate the code (`pytest` and `ruff`)
-    * Submit a Pull-Request on github to practice `git`.
+    * Submit a Pull-Request on GitHub to practice `git`.
 
 The two functions below are skeleton functions. The docstrings explain what
 are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
-wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
+wrote. To run the tests, use `pytest test_NumPy_question.py` at the root of
 the repo. It should say that 2 tests ran with success.
 
 We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `ruff`. You can check that there are no errors
 by calling `ruff check` at the root of the repo.
 """
+
 import numpy as np
 
 
 def max_index(X):
-    """Return the index of the maximum in a numpy array.
+    """Return the index of the maximum in a NumPy array.
 
     Parameters
     ----------
@@ -34,15 +35,23 @@ def max_index(X):
     Raises
     ------
     ValueError
-        If the input is not a numpy array or
+        If the input is not a NumPy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
-
-    # TODO
-
-    return i, j
+    if not isinstance(X, np.ndarray):
+        raise ValueError("There is no numpy array")
+    if X.ndim != 2:
+        raise ValueError("The shape is not 2D")
+    i_max = 0
+    j_max = 0
+    maximum = X[0, 0]
+    for i in range(0, X.shape[0]):
+        for j in range(0, X.shape[1]):
+            if X[i, j] > maximum:
+                maximum = X[i, j]
+                i_max = i
+                j_max = j
+    return i_max, j_max
 
 
 def wallis_product(n_terms):
@@ -64,4 +73,14 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    num = 1
+    deno = 1
+    i = 1
+    if n_terms == 0:
+        return 2
+    while i <= n_terms:
+        num *= (4 * (i ** 2))
+        deno *= (4 * (i ** 2) - 1)
+        i += 1
+    return float(2 * num / deno)
+
