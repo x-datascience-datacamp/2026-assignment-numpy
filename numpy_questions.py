@@ -51,7 +51,6 @@ def max_index(X):
                 maximum = X[i, j]
                 i_max = i
                 j_max = j
-
     return i_max, j_max
 
 
@@ -83,5 +82,5 @@ def wallis_product(n_terms):
         num *= (4 * (i ** 2))
         deno *= (4 * (i ** 2) - 1)
         i += 1
-    return float(2*num/deno)
+    return float(2 * num / deno)
 
